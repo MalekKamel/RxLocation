@@ -29,6 +29,7 @@ maven { url "https://dl.bintray.com/shabankamel/android" }
   tv_location.setText(msg);  
   });
 });
+```
 
 ### See 'app' module for the full code.
 
