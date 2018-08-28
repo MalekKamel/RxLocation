@@ -20,7 +20,7 @@ maven { url "https://dl.bintray.com/shabankamel/android" }
 ```java
  new RxCurrentLocation()  
          .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))  
-         .get(this)  
+         .get(MainActivity.this) 
          .subscribe(location -> {  
              String msg = "lat = " +  
                      location.getLatitude() +  
