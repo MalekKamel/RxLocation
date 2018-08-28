@@ -18,17 +18,17 @@ maven { url "https://dl.bintray.com/shabankamel/android" }
 ```
 # Usage
 ```java
- new RxCurrentLocation()  
-         .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))  
-         .get(MainActivity.this) 
-         .subscribe(location -> {  
-             String msg = "lat = " +  
-                     location.getLatitude() +  
-                     ", lng = " +  
-                     location.getLongitude();  
-             tv_location.setText(msg);  
-  });
-});
+ new RxCurrentLocation()
+                .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
+                .get(MainActivity.this)
+                .subscribe(location -> {
+                            String msg = "lat = " +
+                                    location.getLatitude() +
+                                    ", lng = " +
+                                    location.getLongitude();
+                            tv_location.setText(msg);
+                        }
+                );
 ```
 
 ### See 'app' module for the full code.
