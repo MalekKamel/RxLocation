@@ -26,7 +26,7 @@ maven { url "https://dl.bintray.com/shabankamel/android" }
                      location.getLatitude() +  
                      ", lng = " +  
                      location.getLongitude();  
-  tv_location.setText(msg);  
+             tv_location.setText(msg);  
   });
 });
 ```
