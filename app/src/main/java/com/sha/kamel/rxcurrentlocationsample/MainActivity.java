@@ -33,17 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getCurrentLocation() {
         tv_location = findViewById(R.id.tv_location);
-       Disposable disposable = new RxCurrentLocation()
+        Disposable disposable = new RxCurrentLocation()
                 .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
-                .get(this)
+                .get(MainActivity.this)
                 .subscribe(location -> {
-                    String msg = "lat = " +
-                            location.getLatitude() +
-                            ", lng = " +
-                            location.getLongitude();
-                    tv_location.setText(msg);
-                });
-       compositeDisposable.add(disposable);
+                            String msg = "lat = " +
+                                    location.getLatitude() +
+                                    ", lng = " +
+                                    location.getLongitude();
+                            tv_location.setText(msg);
+                        }
+                );
+        compositeDisposable.add(disposable);
     }
 
     @Override
