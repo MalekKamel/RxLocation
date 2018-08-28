@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">RxCurrentLocation</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="planets_array">
+        <item>Mer</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+    </string-array>
+
+     <string-array name="yes_no_array">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="dogs_array">
+        <item>Pug</item>
+        <item>Cavalier King Charles Spaniel</item>
+        <item>Doge</item>
+        <item>Pup</item>
+        <item>Golden</item>
+    </string-array>
+</resources>

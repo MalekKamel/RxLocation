@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_root_view_color">#f5f4f4</color>
+    <color name="stroke">#e4e3e3</color>
+    <color name="blue">#3F51B5</color>
+    <color name="transparent">#00000000</color>
+    <color name="orange">#b53f5e</color>
+    <color name="white_unpressed">#d9d7d7</color>
+</resources>

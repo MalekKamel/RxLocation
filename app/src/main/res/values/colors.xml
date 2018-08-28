@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_primary_color">#3F51B5</color>
+    <color name="button_secondary_color">#FFFFFF</color>
+    <color name="mtb_green">#4fbe79</color>
+    <color name="mtb_gray">#d3d3d3</color>
+    <color name="orange">#de8a40</color>
+    <color name="orange_pressed">#86470f</color>
+    <color name="white">#ffffff</color>
+</resources>

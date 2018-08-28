@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MultiToggleButton">
+        <attr name="labels" format="reference" />
+        <attr name="mtbPressedColor" format="reference" />
+        <attr name="mtbUnpressedColor" format="reference" />
+        <attr name="mtbColorPressedText" format="reference" />
+        <attr name="mtbColorUnpressedText" format="reference" />
+        <attr name="mtbCornerRadius" format="dimension" />
+        <attr name="mtbRoundedCorners" format="boolean" />
+        <attr name="mtbMultipleChoice" format="boolean" />
+        <attr name="mtbScrollable" format="boolean" />
+        <attr name="mtbSelectFirstItem" format="boolean" />
+        <attr name="mtbTextAllCaps" format="boolean" />
+    </declare-styleable>
+</resources>
