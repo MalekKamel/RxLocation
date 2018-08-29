@@ -1,4 +1,4 @@
-package com.sha.kamel.multitogglebutton;
+package com.sha.kamel.rxcurrentlocation;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

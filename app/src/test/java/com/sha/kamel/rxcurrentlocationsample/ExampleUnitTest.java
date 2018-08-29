@@ -1,4 +1,4 @@
-package com.sha.kamel.multitogglebutton;
+package com.sha.kamel.rxcurrentlocationsample;
 
 import org.junit.Test;
 

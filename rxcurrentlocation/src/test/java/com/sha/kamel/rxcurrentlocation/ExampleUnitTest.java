@@ -1,4 +1,4 @@
-package com.sha.kamel.sample;
+package com.sha.kamel.rxcurrentlocation;
 
 import org.junit.Test;
 
