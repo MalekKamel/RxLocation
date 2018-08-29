@@ -13,8 +13,11 @@
 dependencies {
     implementation 'com.sha.kamel:rx-current-location:1.0.0@aar'
 }
-repositories { 
-maven { url "https://dl.bintray.com/shabankamel/android" } 
+
+allprojects {
+ repositories { 
+  maven { url "https://dl.bintray.com/shabankamel/android" } 
+ }
 }
 ```
 # Usage
