@@ -47,7 +47,7 @@ if and error occureed it will be passed to `onFailureListener(OnFailure)`
 
 #### Example
 ```java
-.new RxCurrentLocation().onFailureListener(failMessage -> {  
+new RxCurrentLocation().onFailureListener(failMessage -> {  
       // you can show error directly
       tv_location.setText(failMessage.getMessage()); 
       // or you can handle each error separately
