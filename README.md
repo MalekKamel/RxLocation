@@ -3,6 +3,7 @@
 
 
 
+
 # RxCurrentLocation
 ###  RxJava wrapper for Android current location.
 
@@ -35,6 +36,28 @@ allprojects {
                         }
                 );
 ```
+
+## LocationRequest Interval
+```java
+     rxCurrentLocation.interval(10 * 1000);
+```
+### Note
+Default = 0
+
+## LocationRequest fastest update interval
+```java
+     rxCurrentLocation.fastestUpdateInterval(2 * 1000);
+```
+### Note
+Default = 2 * 1000
+
+## LocationRequest priority
+
+```java
+     rxCurrentLocation.priority(LocationRequest.PRIORITY_LOW_POWER);
+```
+### Note
+Default = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
 
 # Errors
 if and error occureed it will be passed to `onFailureListener(OnFailure)`
