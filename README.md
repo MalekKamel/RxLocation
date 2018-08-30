@@ -48,7 +48,8 @@ if and error occureed it will be passed to `onFailureListener(OnFailure)`
 #### Example
 ```java
 .new RxCurrentLocation().onFailureListener(failMessage -> {  
-      tv_location.setText(failMessage.getMessage()); // you can show error directly
+      // you can show error directly
+      tv_location.setText(failMessage.getMessage()); 
       // or you can handle each error separately
       switch (failMessage.getError()){  
         case GPS_DISABLED:  
