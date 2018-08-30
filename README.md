@@ -72,7 +72,6 @@ if and error occureed it will be passed to `onFailureListener(OnFailure)`
 
  - [ ] GPS_DISABLED
  - [ ] NETWORK_DISABLED
- - [ ] PERMISSIONS_REQUIRED
  - [ ] UNKNOWN
 
 #### Example
@@ -86,9 +85,6 @@ new RxCurrentLocation().onFailureListener(failMessage -> {
             // handle error  
            break;  
         case NETWORK_DISABLED:  
-            // handle error  
-           break;  
-        case PERMISSIONS_REQUIRED:  
             // handle error  
            break;  
         case UNKNOWN:  
