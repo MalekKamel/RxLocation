@@ -32,7 +32,7 @@ public final class RxCurrentLocation {
     private PublishSubject<Location> ps = PublishSubject.create();
 
     /**
-     * get current location
+     * get current location updates continuously
      * @param activity an activity instance
      * @return {@link Observable} of type {@link Location}
      */
@@ -41,6 +41,11 @@ public final class RxCurrentLocation {
         return get(activity);
     }
 
+    /**
+     * get current location only once
+     * @param activity an activity instance
+     * @return {@link Observable} of type {@link Location}
+     */
     public Observable<Location> get(FragmentActivity activity){
         if (!NetworkUtil.isConnected(activity)){
             error(FailureMessage.Error.NETWORK_DISABLED, "");
@@ -175,6 +180,11 @@ public final class RxCurrentLocation {
         return this;
     }
 
+    /**
+     * Remove location updates to stop listening to location
+     * updates
+     * @return this
+     */
     public RxCurrentLocation removeLocationUpdates(){
         if (fusedLocationProviderClient != null && locationCallback != null)
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);

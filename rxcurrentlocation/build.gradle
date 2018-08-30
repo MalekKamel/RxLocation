@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/RxCurrentLocation'
     gitUrl = 'https://github.com/ShabanKamell/RxCurrentLocation.git'
 
-    libraryVersion = '1.4.0'
+    libraryVersion = '1.5.0'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
