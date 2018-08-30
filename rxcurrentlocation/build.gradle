@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/RxCurrentLocation'
     gitUrl = 'https://github.com/ShabanKamell/RxCurrentLocation.git'
 
-    libraryVersion = '1.3.0'
+    libraryVersion = '1.4.0'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -89,6 +89,7 @@ dependencies {
     javadocDeps deps.java8_reactive_streams
 
     implementation deps.rx.permissions
+    implementation deps.rx.rxlocationsettingsrequest
 
 }
 

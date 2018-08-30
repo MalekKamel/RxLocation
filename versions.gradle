@@ -20,7 +20,8 @@ ext.versions = [
         supportAuth : "16.0.0",
         mapUtils : "0.5",
         gcm : "15.0.1",
-        rxPermissions          : "0.10.2"
+        rxPermissions          : "0.10.2",
+        rxlocationsettingsrequest          : "1.0.0",
 ]
 
 ext.deps = [
@@ -43,7 +44,9 @@ ext.deps = [
                 binding_appcompat_7    : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${versions.rxbinding}",
                 binding_design         : "com.jakewharton.rxbinding2:rxbinding-design:${versions.rxbinding}",
                 binding_recyclerview_7 : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${versions.rxbinding}",
-                permissions    : "com.github.tbruyelle:rxpermissions:${versions.rxPermissions}"
+                permissions    : "com.github.tbruyelle:rxpermissions:${versions.rxPermissions}",
+                rxlocationsettingsrequest    : "com.sha.kamel:rx-location-settings-request:${versions.rxlocationsettingsrequest}"
+
         ],
 
         butterknife : [

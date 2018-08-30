@@ -2,7 +2,6 @@ package com.sha.kamel.rxcurrentlocation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,6 +11,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.sha.kamel.rxlocationsettingsrequest.RxLocationSettingsRequest;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.Observable;
@@ -26,55 +26,56 @@ public final class RxCurrentLocation {
     private long fastestUpdateInterval = (long) 2 * 1000;
     private int priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY;
     private OnFailure onFailure;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private LocationCallback locationCallback;
+    private boolean shouldRequestOnce;
+    private PublishSubject<Location> ps = PublishSubject.create();
 
     /**
      * get current location
      * @param activity an activity instance
      * @return {@link Observable} of type {@link Location}
      */
-    public Observable<Location> get(FragmentActivity activity){
-        PublishSubject<Location> ps = PublishSubject.create();
+    public Observable<Location> getOnce(FragmentActivity activity){
+        shouldRequestOnce = true;
+        return get(activity);
+    }
 
+    public Observable<Location> get(FragmentActivity activity){
         if (!NetworkUtil.isConnected(activity)){
             error(FailureMessage.Error.NETWORK_DISABLED, "");
             return ps;
         }
 
-        if (!LocationManagerUtil.isLocationServiceEnabled(activity)){
-            error(FailureMessage.Error.GPS_DISABLED, "");
-            return ps;
-        }
-
-        handlePermissions(activity, ps);
+        handlePermissions(activity);
 
         return ps;
     }
 
-    private void handlePermissions(FragmentActivity activity, PublishSubject<Location> ps) {
+    private void handlePermissions(FragmentActivity activity) {
         new RxPermissions(activity).request(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 .subscribe(isGranted -> {
                     if (isGranted)
-                        getLocation(activity, ps);
+                        getLocation(activity);
                 });
     }
 
     @SuppressLint("MissingPermission")
-    private void getLocation(FragmentActivity activity, PublishSubject<Location> ps) {
+    private void getLocation(FragmentActivity activity) {
         GoogleApiClientUtil.create(
                 activity,
                 () -> {
                     // Get first location
-                    FusedLocationProviderClient flpc = LocationServices.getFusedLocationProviderClient(activity);
-                    flpc.getLastLocation()
+                    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+                    fusedLocationProviderClient.getLastLocation()
                             .addOnSuccessListener(activity, location -> {
                                 // Got last known location. In some rare situations, this can be null.
                                 if (location == null)
-                                    requestLocationUpdate(ps, flpc);
+                                    requestLocationUpdate(activity);
                                 else{
-                                    ps.onNext(location);
-                                    ps.onComplete();
+                                    onResult(location);
                                 }
                             })
                             .addOnFailureListener(e -> {
@@ -85,6 +86,11 @@ public final class RxCurrentLocation {
                 LocationServices.API);
     }
 
+    private void onResult(Location location) {
+        ps.onNext(location);
+        if (shouldRequestOnce) removeLocationUpdates();
+    }
+
     private void error(FailureMessage.Error error, String msg) {
         if (onFailure != null) onFailure.run(new FailureMessage(error, msg));
         Log.d(RxCurrentLocation.class.getSimpleName(), error.toString());
@@ -92,24 +98,33 @@ public final class RxCurrentLocation {
 
 
     @SuppressLint("MissingPermission")
-    private void requestLocationUpdate(PublishSubject<Location> ps, FusedLocationProviderClient flpc){
+    private void requestLocationUpdate(FragmentActivity activity){
         try {
             LocationRequest locationRequest = new LocationRequest();
             locationRequest.setPriority(priority);
             locationRequest.setInterval(interval);
             locationRequest.setFastestInterval(fastestUpdateInterval);
 
-            flpc.requestLocationUpdates(
+            locationCallback = new LocationCallback(){
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    super.onLocationResult(locationResult);
+                    onResult(locationResult.getLastLocation());
+                }
+            };
+
+            new RxLocationSettingsRequest().request(
                     locationRequest,
-                    new LocationCallback(){
-                        @Override
-                        public void onLocationResult(LocationResult locationResult) {
-                            super.onLocationResult(locationResult);
-                            ps.onNext(locationResult.getLastLocation());
-                            ps.onComplete();
-                        }
-                    },
-                    null);
+                    activity)
+            .subscribe(ok -> {
+                if (ok){
+                    fusedLocationProviderClient.requestLocationUpdates(
+                            locationRequest,
+                            locationCallback,
+                            null);
+                }
+                else error(FailureMessage.Error.GPS_DISABLED, "");
+            });
 
         }catch (Exception e){
             e.printStackTrace();
@@ -157,6 +172,13 @@ public final class RxCurrentLocation {
      */
     public RxCurrentLocation priority(int priority) {
         this.priority = priority;
+        return this;
+    }
+
+    public RxCurrentLocation removeLocationUpdates(){
+        if (fusedLocationProviderClient != null && locationCallback != null)
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        ps.onComplete();
         return this;
     }
 

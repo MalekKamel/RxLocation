@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Disposable disposable = new RxCurrentLocation()
                 .fastestUpdateInterval(2 * 1000)
                 .interval(10 * 1000)
-                .priority(LocationRequest.PRIORITY_LOW_POWER)
+                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .onFailureListener(failMessage -> {
                     // you can show error directly
                     tv_location.setText(failMessage.getMessage());
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                             // handle error
                             break;
                     }})
-                .get(MainActivity.this)
+                .getOnce(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
                                     location.getLatitude() +
