@@ -11,11 +11,10 @@ public class FailureMessage {
         this.msg = msg;
     }
 
-    enum Error {
+    public enum Error {
         GPS_DISABLED("GPS is disabled."),
         UNKNOWN("Unknown error."),
-        NETWORK_DISABLED("No network available."),
-        PERMISSIONS_REQUIRED("Client must have ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to perform any location operations");
+        NETWORK_DISABLED("No network available.");
 
         private String message;
 

@@ -1,12 +1,11 @@
 package com.sha.kamel.rxcurrentlocationsample;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.google.android.gms.location.LocationRequest;
 import com.sha.kamel.rxcurrentlocation.RxCurrentLocation;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -21,20 +20,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Disposable disposable = new RxPermissions(this).request(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                .subscribe(isGranted -> {
-                    if (isGranted)
-                        getCurrentLocation();
-                });
-        compositeDisposable.add(disposable);
+        getCurrentLocation();
     }
 
     private void getCurrentLocation() {
         tv_location = findViewById(R.id.tv_location);
         Disposable disposable = new RxCurrentLocation()
-                .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
+                .fastestUpdateInterval(2 * 1000)
+                .interval(10 * 1000)
+                .priority(LocationRequest.PRIORITY_LOW_POWER)
+                .onFailureListener(failMessage -> {
+                    // you can show error directly
+                    tv_location.setText(failMessage.getMessage());
+                    // or you can handle each error separately
+                    switch (failMessage.getError()){
+                        case GPS_DISABLED:
+                            // handle error
+                            break;
+                        case NETWORK_DISABLED:
+                            // handle error
+                            break;
+
+                        case UNKNOWN:
+                            // handle error
+                            break;
+                    }})
                 .get(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
