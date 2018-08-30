@@ -4,10 +4,17 @@
 
 
 
+
 # RxCurrentLocation
 ###  RxJava wrapper for Android current location.
 
 ![alt text](https://github.com/ShabanKamell/RxCurrentLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
+
+# Features
+
+ - [ ] Easy-to-use APIs
+ - [ ] Handle runtime permissions for you
+ - [ ] Notify you if GPS or network disabled
 
 # Installation
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
