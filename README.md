@@ -25,6 +25,9 @@ allprojects {
 # Usage
 ```java
  new RxCurrentLocation()
+                .fastestUpdateInterval(2 * 1000)
+                .interval(10 * 1000)
+                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .get(MainActivity.this)
                 .subscribe(location -> {
