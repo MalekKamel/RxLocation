@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                             // handle error
                             break;
                     }})
-                .getOnce(MainActivity.this)
+                .get(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
                                     location.getLatitude() +
