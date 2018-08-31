@@ -11,10 +11,10 @@
  - [ ] Enable GPS.
 
 # Installation
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/rxlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-current-location:1.7.0@aar'
+    implementation 'com.sha.kamel:rx-location:1.8.0@aar'
 }
 
 allprojects {
