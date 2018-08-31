@@ -2,7 +2,7 @@
 # RxLocation
 ###  RxJava wrapper for Android current location.
 
-![alt text](https://github.com/ShabanKamell/RxCurrentLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
+![alt text](https://github.com/ShabanKamell/RxLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
 
 # Features
 
@@ -25,7 +25,7 @@ allprojects {
 ```
 # Usage
 ```java
- new RxCurrentLocation()
+ new RxLocation()
                 .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .retrieveCurrentLocation(MainActivity.this)
                 .subscribe(location -> {
@@ -52,7 +52,7 @@ rxLocation.listenForUpdates(
                 .fastestUpdateInterval(2 * 1000))
 ```
 ## Note
-Call `RxCurrentLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
+Call `RxLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
 
 ### Update Quality Defaults
  - [ ] priority default value = 0.
@@ -69,7 +69,7 @@ if and error occureed it will be passed to `onFailureListener(OnFailure)`
 
 #### Example
 ```java
-new RxCurrentLocation().onFailureListener(failMessage -> {  
+new RxLocation().onFailureListener(failMessage -> {  
       // you can show error directly
       tv_location.setText(failMessage.getMessage()); 
       // or you can handle each error separately
