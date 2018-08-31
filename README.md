@@ -1,4 +1,5 @@
-# RxCurrentLocation
+
+# RxLocation
 ###  RxJava wrapper for Android current location.
 
 ![alt text](https://github.com/ShabanKamell/RxCurrentLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
@@ -13,7 +14,7 @@
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-current-location:1.5.0@aar'
+    implementation 'com.sha.kamel:rx-current-location:1.7.0@aar'
 }
 
 allprojects {
@@ -25,11 +26,8 @@ allprojects {
 # Usage
 ```java
  new RxCurrentLocation()
-                .fastestUpdateInterval(2 * 1000)
-                .interval(10 * 1000)
-                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
-                .get(MainActivity.this)
+                .retrieveCurrentLocation(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
                                     location.getLatitude() +
@@ -39,35 +37,27 @@ allprojects {
                         }
                 );
 ```
-## getOnce vs get
-Use `getOnce(FragmentActivity)` to get the location only once. And use `get(FragmentActivity)` to get continuous updates of current locations
+## listenForUpdates
 ```java
-     rxCurrentLocation.getOnce(MainActivity.this)...
+     rxLocation.listenForUpdates(MainActivity.this)...
+```
+### Update Quality 
+You can set update quality by passing `UpdateQuality` object to the overloaded `listenForUpdates` function
+```java
+rxLocation.listenForUpdates(  
+        MainActivity.this,  
+        new UpdateQuality()  
+                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)  
+                .interval(10 * 1000)  
+                .fastestUpdateInterval(2 * 1000))
 ```
 ## Note
 Call `RxCurrentLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
 
-## LocationRequest Interval
-```java
-     rxCurrentLocation.interval(10 * 1000);
-```
-### Note
-Default = 0
-
-## LocationRequest fastest update interval
-```java
-     rxCurrentLocation.fastestUpdateInterval(2 * 1000);
-```
-### Note
-Default = 2 * 1000
-
-## LocationRequest priority
-
-```java
-     rxCurrentLocation.priority(LocationRequest.PRIORITY_LOW_POWER);
-```
-### Note
-Default = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+### Update Quality Defaults
+ - [ ] priority default value = 0.
+ - [ ] interval default value =  LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY.
+ - [ ] fastestUpdateInterval default value = 2 * 1000.
 
 # Errors
 if and error occureed it will be passed to `onFailureListener(OnFailure)`
