@@ -1,6 +1,6 @@
 
 # RxLocation
-###  RxJava wrapper for Android current location.
+###  RxJava wrapper for Android location.
 
 ![alt text](https://github.com/ShabanKamell/RxLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
 
