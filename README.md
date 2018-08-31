@@ -16,13 +16,8 @@
 dependencies {
     implementation 'com.sha.kamel:rx-location:1.8.0@aar'
 }
-
-allprojects {
- repositories { 
-  maven { url "https://dl.bintray.com/shabankamel/android" } 
- }
-}
 ```
+
 # Usage
 ```java
  new RxLocation()
