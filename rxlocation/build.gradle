@@ -8,14 +8,14 @@ ext {
 
     publishedGroupId = 'com.sha.kamel'
     libraryName = 'RxLocation'
-    artifact = 'rx-current'
+    artifact = 'rx-location'
 
-    libraryDescription = 'RxJava wrapper for Android current location.'
+    libraryDescription = 'RxJava wrapper for Android location.'
 
     siteUrl = 'https://github.com/ShabanKamell/RxLocation'
     gitUrl = 'https://github.com/ShabanKamell/RxLocation.git'
 
-    libraryVersion = '1.7.0'
+    libraryVersion = '1.8.0'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
