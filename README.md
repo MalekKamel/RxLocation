@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 # RxCurrentLocation
 ###  RxJava wrapper for Android current location.
 
@@ -13,14 +6,14 @@
 # Features
 
  - [ ] Easy-to-use APIs
- - [ ] Handle runtime permissions for you
- - [ ] Notify you if GPS or network disabled
+ - [ ] Handle runtime.
+ - [ ] Enable GPS.
 
 # Installation
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-current-location:1.0.0@aar'
+    implementation 'com.sha.kamel:rx-current-location:1.5.0@aar'
 }
 
 allprojects {
@@ -32,6 +25,9 @@ allprojects {
 # Usage
 ```java
  new RxCurrentLocation()
+                .fastestUpdateInterval(2 * 1000)
+                .interval(10 * 1000)
+                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .get(MainActivity.this)
                 .subscribe(location -> {
@@ -43,6 +39,13 @@ allprojects {
                         }
                 );
 ```
+## getOnce vs get
+Use `getOnce(FragmentActivity)` to get the location only once. And use `get(FragmentActivity)` to get continuous updates of current locations
+```java
+     rxCurrentLocation.getOnce(MainActivity.this)...
+```
+## Note
+Call `RxCurrentLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
 
 ## LocationRequest Interval
 ```java
