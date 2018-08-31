@@ -1,1 +1,1 @@
-include ':app', ':rxcurrentlocation'
+include ':app', ':rxlocation'

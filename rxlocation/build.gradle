@@ -1,0 +1,120 @@
+apply plugin: 'com.android.library'
+
+// ./gradlew bintrayUpload
+
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'rxcurrentlocation'
+
+    publishedGroupId = 'com.sha.kamel'
+    libraryName = 'RxLocation'
+    artifact = 'rx-current'
+
+    libraryDescription = 'RxJava wrapper for Android current location.'
+
+    siteUrl = 'https://github.com/ShabanKamell/RxLocation'
+    gitUrl = 'https://github.com/ShabanKamell/RxLocation.git'
+
+    libraryVersion = '1.7.0'
+
+    developerId = 'shaban'
+    developerName = 'shaban kamel'
+    developerEmail = 'sh3ban.kamel@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minvSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/MANIFEST.MF'
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    // annotationProcessor
+    android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+}
+
+configurations {
+    javadocDeps
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation deps.rxjava
+    javadocDeps deps.rxjava
+
+    implementation deps.google.locations
+    javadocDeps deps.google.locations
+
+    implementation deps.java8_reactive_streams
+    javadocDeps deps.java8_reactive_streams
+
+    implementation deps.rx.permissions
+    implementation deps.rx.rxlocationsettingsrequest
+
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+task docs(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.compile
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    //basename = artifact_id
+    from androidJavadocs.destinationDir
+}
+
+javadoc {
+    classpath += configurations.javadocDeps
+    options.addStringOption("sourcepath", "")
+}

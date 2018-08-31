@@ -17,3 +17,9 @@ P
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 y
 Iapp/src/main/java/com/sha/kamel/rxcurrentlocationsample/MainActivity.java,5/0/501bc5db89e841863f6548ec9d59bbb85d1f1a28
+ˆ
+Xrxcurrentlocation/src/main/java/com/sha/kamel/rxcurrentlocation/GoogleApiClientUtil.java,d/9/d9f4f8bd1e72714cd5d1f8b5b1dda142c28a64d9
+ƒ
+Srxcurrentlocation/src/main/java/com/sha/kamel/rxcurrentlocation/FailureMessage.java,3/2/32be8753bc034717a1c7d9b07397eb58a9896c3b
+†
+Vrxcurrentlocation/src/main/java/com/sha/kamel/rxcurrentlocation/RxCurrentLocation.java,0/8/0840ff132051d7797d231a960b861265a7513f33

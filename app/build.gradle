@@ -44,6 +44,6 @@ dependencies {
     implementation deps.java8_reactive_streams
     implementation deps.rxjava
     implementation deps.google.locations
-    implementation project(':rxcurrentlocation')
+    implementation project(':rxlocation')
 
 }

@@ -1,7 +1,8 @@
 
-ksquid:S1871,"HThis case's code block is the same as the block for the case on line 37.(Í‹Æşÿÿÿÿ8ËÒ°ÕØ,
 }squid:S1450"ZRemove the "tv_location" field and declare it as a local variable in the relevant methods.(‘Öƒ³øÿÿÿÿ8£Íë•Ø,
 zsquid:S00116"VRename this field "tv_location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Öƒ³øÿÿÿÿ8£Íë•Ø,
-fsquid:S1871("HThis case's code block is the same as the block for the case on line 37.(¤ŞöÔ8ËÒ°ÕØ,
 lsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(²Ú±8£Íë•Ø,
-W"squid:SwitchLastCaseIsDefaultCheck$""Add a default case to this switch.(«Š‚ş8ş¥àİØ,
+isquid:S2184"FCast one of the operands of this multiplication operation to a "long".(«‚ÊÒşÿÿÿÿ8ğŒÚãØ,
+csquid:S2184"FCast one of the operands of this multiplication operation to a "long".(˜”ñ[8ğŒÚãØ,
+fsquid:S1871("HThis case's code block is the same as the block for the case on line 37.(¤ŞöÔ8ËÒ°ÕØ,
+ksquid:S1871,"HThis case's code block is the same as the block for the case on line 37.(Í‹Æşÿÿÿÿ8ËÒ°ÕØ,
