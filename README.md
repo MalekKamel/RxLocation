@@ -21,7 +21,7 @@ dependencies {
 # Usage
 ```java
  new RxLocation()
-                .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
+                .onFailure(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .retrieveCurrentLocation(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
