@@ -18,10 +18,10 @@ dependencies {
 }
 
 repositories {
-...
 maven {
 url "https://dl.bintray.com/shabankamel/android"
 }
+...
 }
 ```
 
