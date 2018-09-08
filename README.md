@@ -14,19 +14,21 @@
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-location:1.8.0@aar'
+    implementation 'com.sha.kamel:rx-location:1.8.1@aar'
 }
 
-allprojects {
- repositories { 
-  maven { url "https://dl.bintray.com/shabankamel/android" } 
- }
+repositories {
+maven {
+url "https://dl.bintray.com/shabankamel/android"
+}
+...
 }
 ```
+
 # Usage
 ```java
  new RxLocation()
-                .onFailureListener(failMessage -> tv_location.setText(failMessage.getMessage()))
+                .onFailure(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .retrieveCurrentLocation(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
