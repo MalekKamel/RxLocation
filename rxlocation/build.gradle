@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/ShabanKamell/RxLocation'
     gitUrl = 'https://github.com/ShabanKamell/RxLocation.git'
 
-    libraryVersion = '1.8.0'
+    libraryVersion = '1.8.1'
 
     developerId = 'shaban'
     developerName = 'shaban kamel'
@@ -79,13 +79,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation deps.rxjava
+    api deps.rxjava
     javadocDeps deps.rxjava
 
-    implementation deps.google.locations
+    api deps.google.locations
     javadocDeps deps.google.locations
 
-    implementation deps.java8_reactive_streams
+    api deps.java8_reactive_streams
     javadocDeps deps.java8_reactive_streams
 
     implementation deps.rx.permissions

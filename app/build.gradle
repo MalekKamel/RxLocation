@@ -41,9 +41,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation deps.java8_reactive_streams
-    implementation deps.rxjava
-    implementation deps.google.locations
     implementation project(':rxlocation')
 
 }
