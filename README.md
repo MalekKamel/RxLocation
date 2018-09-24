@@ -7,7 +7,7 @@
 # Features
 
  - [ ] Easy-to-use APIs
- - [ ] Handle runtime.
+ - [ ] Handle runtime persmissions.
  - [ ] Enable GPS.
 
 # Installation
