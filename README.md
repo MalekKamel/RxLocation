@@ -1,25 +1,26 @@
 
-# RxLocation
-###  RxJava wrapper for Android location.
 
-![alt text](https://github.com/ShabanKamell/RxLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
+# RxGallery
+###  RxJava wrapper for Android Gallery & Camera.
+### With RxGallery you get rid of Activity.onActivityResult() and receive the result on the call site. Also,  no runtime permissions are required
 
 # Features
 
  - [ ] Easy-to-use APIs
- - [ ] Handle runtime persmissions.
- - [ ] Enable GPS.
+ - [ ] Results are delivered at the call site not at Activity.onActivityResult 
+ - [ ] Handle all Camera and Gallery with the same APIs.
+ - [ ]  Handle runtime permissions.
 
 # Installation
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/RxGallery/images/download.svg) ](https://bintray.com/shabankamel/android/RxGallery/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-location:1.8.1@aar'
+    implementation 'com.sha.kamel:rx-gallery:1.0.0@aar'
 }
 
 repositories {
 maven {
-url "https://dl.bintray.com/shabankamel/android"
+   url "https://dl.bintray.com/shabankamel/android"
 }
 ...
 }
@@ -39,54 +40,72 @@ url "https://dl.bintray.com/shabankamel/android"
                         }
                 );
 ```
-## listenForUpdates
+## Pick Image
 ```java
-     rxLocation.listenForUpdates(MainActivity.this)...
+     new RxGallery()
+         .image(fragmentActivity, )
+         .subscribe(result -> {
+           // Handle logic here
+         };
 ```
-### Update Quality 
-You can set update quality by passing `UpdateQuality` object to the overloaded `listenForUpdates` function
+##  Pick Multiple Images
 ```java
-rxLocation.listenForUpdates(  
-        MainActivity.this,  
-        new UpdateQuality()  
-                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)  
-                .interval(10 * 1000)  
-                .fastestUpdateInterval(2 * 1000))
+     new RxGallery()
+     .multipleImages(fragmentActivity)
+         .subscribe(result -> {
+           // Handle logic here
+         };
 ```
-## Note
-Call `RxLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
-
-### Update Quality Defaults
- - [ ] priority default value = 0.
- - [ ] interval default value =  LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY.
- - [ ] fastestUpdateInterval default value = 2 * 1000.
-
-# Errors
-if and error occureed it will be passed to `onFailureListener(OnFailure)`
-### Types of expected errors:
-
- - [ ] GPS_DISABLED
- - [ ] NETWORK_DISABLED
- - [ ] UNKNOWN
-
-#### Example
+## Pick Video
 ```java
-new RxLocation().onFailureListener(failMessage -> {  
-      // you can show error directly
-      tv_location.setText(failMessage.getMessage()); 
-      // or you can handle each error separately
-      switch (failMessage.getError()){  
-        case GPS_DISABLED:  
-            // handle error  
-           break;  
-        case NETWORK_DISABLED:  
-            // handle error  
-           break;  
-        case UNKNOWN:  
-             // handle error  
-           break;  
-  } 
-})
+     new RxGallery()
+          .video(fragmentActivity)
+          .subscribe(result -> {
+             // Handle logic here
+          };
+```
+## Pick Multiple Videos
+```java
+     new RxGallery()
+         .multipleVideos(fragmentActivity)
+         .subscribe(result -> {
+            // Handle logic here
+         };
+```
+## Pick Audio
+```java
+     new RxGallery()
+          .audio(fragmentActivity, MimeType.VIDEO, MimeType.AUDIO)
+          .subscribe(result -> {
+             // Handle logic here
+          };
+```
+## Pick Multiple Audio Files
+```java
+     new RxGallery()
+           .multipleAudio(fragmentActivity, MimeType.VIDEO, MimeType.AUDIO)
+           .subscribe(result -> {
+              // Handle logic here
+           };
+```
+
+## Request By Type
+#### Yo can request any type by 
+```java
+     new RxGallery(fragmentActivity)
+         .requestByType()
+         .subscribe(result -> {
+            // Handle logic here
+         };
+```
+
+## Request Multiple By Type
+```java
+     new RxGallery(fragmentActivity)
+           .requestMultipleByType()
+           .subscribe(result -> {
+             // Handle logic here
+           };
 ```
 
 ### See 'app' module for the full code.
