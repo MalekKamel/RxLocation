@@ -1,26 +1,25 @@
 
+# RxLocation
+###  RxJava wrapper for Android location.
 
-# RxGallery
-###  RxJava wrapper for Android Gallery & Camera.
-### With RxGallery you get rid of Activity.onActivityResult() and receive the result on the call site. Also,  no runtime permissions are required
+![alt text](https://github.com/ShabanKamell/RxLocation/blob/master/blob/master/raw/mobile-location.png "Sample App")
 
 # Features
 
  - [ ] Easy-to-use APIs
- - [ ] Results are delivered at the call site not at Activity.onActivityResult 
- - [ ] Handle all Camera and Gallery with the same APIs.
- - [ ]  Handle runtime permissions.
+ - [ ] Handle runtime.
+ - [ ] Enable GPS.
 
 # Installation
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/RxGallery/images/download.svg) ](https://bintray.com/shabankamel/android/RxGallery/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-gallery:1.0.0@aar'
+    implementation 'com.sha.kamel:rx-location:1.8.1@aar'
 }
 
 repositories {
 maven {
-   url "https://dl.bintray.com/shabankamel/android"
+url "https://dl.bintray.com/shabankamel/android"
 }
 ...
 }
@@ -40,72 +39,54 @@ maven {
                         }
                 );
 ```
-## Pick Image
+## listenForUpdates
 ```java
-     new RxGallery()
-         .image(fragmentActivity, )
-         .subscribe(result -> {
-           // Handle logic here
-         };
+     rxLocation.listenForUpdates(MainActivity.this)...
 ```
-##  Pick Multiple Images
+### Update Quality 
+You can set update quality by passing `UpdateQuality` object to the overloaded `listenForUpdates` function
 ```java
-     new RxGallery()
-     .multipleImages(fragmentActivity)
-         .subscribe(result -> {
-           // Handle logic here
-         };
+rxLocation.listenForUpdates(  
+        MainActivity.this,  
+        new UpdateQuality()  
+                .priority(LocationRequest.PRIORITY_HIGH_ACCURACY)  
+                .interval(10 * 1000)  
+                .fastestUpdateInterval(2 * 1000))
 ```
-## Pick Video
-```java
-     new RxGallery()
-          .video(fragmentActivity)
-          .subscribe(result -> {
-             // Handle logic here
-          };
-```
-## Pick Multiple Videos
-```java
-     new RxGallery()
-         .multipleVideos(fragmentActivity)
-         .subscribe(result -> {
-            // Handle logic here
-         };
-```
-## Pick Audio
-```java
-     new RxGallery()
-          .audio(fragmentActivity, MimeType.VIDEO, MimeType.AUDIO)
-          .subscribe(result -> {
-             // Handle logic here
-          };
-```
-## Pick Multiple Audio Files
-```java
-     new RxGallery()
-           .multipleAudio(fragmentActivity, MimeType.VIDEO, MimeType.AUDIO)
-           .subscribe(result -> {
-              // Handle logic here
-           };
-```
+## Note
+Call `RxLocation.removeLocationUpdates()` to stop location updates when you don't need updates anymore.
 
-## Request By Type
-#### Yo can request any type by 
-```java
-     new RxGallery(fragmentActivity)
-         .requestByType()
-         .subscribe(result -> {
-            // Handle logic here
-         };
-```
+### Update Quality Defaults
+ - [ ] priority default value = 0.
+ - [ ] interval default value =  LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY.
+ - [ ] fastestUpdateInterval default value = 2 * 1000.
 
-## Request Multiple By Type
+# Errors
+if and error occureed it will be passed to `onFailureListener(OnFailure)`
+### Types of expected errors:
+
+ - [ ] GPS_DISABLED
+ - [ ] NETWORK_DISABLED
+ - [ ] UNKNOWN
+
+#### Example
 ```java
-     new RxGallery(fragmentActivity)
-           .requestMultipleByType()
-           .subscribe(result -> {
-             // Handle logic here
-           };
+new RxLocation().onFailureListener(failMessage -> {  
+      // you can show error directly
+      tv_location.setText(failMessage.getMessage()); 
+      // or you can handle each error separately
+      switch (failMessage.getError()){  
+        case GPS_DISABLED:  
+            // handle error  
+           break;  
+        case NETWORK_DISABLED:  
+            // handle error  
+           break;  
+        case UNKNOWN:  
+             // handle error  
+           break;  
+  } 
+})
 ```
 
 ### See 'app' module for the full code.
