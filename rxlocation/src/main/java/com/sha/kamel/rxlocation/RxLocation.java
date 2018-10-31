@@ -11,7 +11,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.sha.kamel.rxlocationsettingsrequest.RxLocationSettingsRequest;
+import com.sha.kamel.rxlocationsettingsrequest.RxGps;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.Observable;
@@ -141,7 +141,7 @@ public final class RxLocation {
                 }
             };
 
-            new RxLocationSettingsRequest().request(
+            new RxGps().enable(
                     locationRequest,
                     activity)
             .subscribe(ok -> {

@@ -89,7 +89,7 @@ dependencies {
     javadocDeps deps.java8_reactive_streams
 
     implementation deps.rx.permissions
-    implementation deps.rx.rxlocationsettingsrequest
+    api deps.rx.rxGps
 
 }
 

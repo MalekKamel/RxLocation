@@ -1,6 +1,0 @@
-
-ksquid:S1871*"HThis case's code block is the same as the block for the case on line 35.(Ν‹Ζώÿÿÿÿ8φε–„Ω,
-}squid:S1450"ZRemove the "tv_location" field and declare it as a local variable in the relevant methods.(‘Φƒ³ψÿÿÿÿ8φε–„Ω,
-zsquid:S00116"VRename this field "tv_location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Φƒ³ψÿÿÿÿ8φε–„Ω,
-lsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(²Ϊ±8φε–„Ω,
-fsquid:S1871&"HThis case's code block is the same as the block for the case on line 35.(¤ήφΤ8φε–„Ω,
