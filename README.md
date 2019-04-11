@@ -38,7 +38,7 @@ url "https://dl.bintray.com/shabankamel/android"
                         }
                 );
 ```
-## listenForUpdates
+## Listen For Location Updates
 ```java
      rxLocation.listenForUpdates(MainActivity.this)...
 ```
