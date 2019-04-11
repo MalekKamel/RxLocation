@@ -14,25 +14,31 @@ import com.google.android.gms.common.api.GoogleApiClient;
  * Created by Sha on 1/7/18.
  */
 
-public final class GoogleApiClientUtil {
+final class GoogleApiClientUtil {
 
-    public static GoogleApiClient create(Context context, OnConnectedCallback connectedCallback, Api... apis){
-        return create(context, new GoogleApiClient.ConnectionCallbacks() {
-                          @Override
-                          public void onConnected(@Nullable Bundle bundle) {
-                              connectedCallback.run();
-                          }
+    GoogleApiClient create(Context context, Procedure callback, Api... apis){
+        return create(
+                context,
+                new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(@Nullable Bundle bundle) {
+                        callback.run();
+                    }
 
-                          @Override
-                          public void onConnectionSuspended(int i) {
+                    @Override
+                    public void onConnectionSuspended(int i) {
 
-                          }
-                      },
-                apis);
+                    }
+                },
+                apis
+        );
     }
 
-    public static GoogleApiClient create(
-            Context context, GoogleApiClient.ConnectionCallbacks callbacks, Api... apis){
+    private GoogleApiClient create(
+            Context context,
+            GoogleApiClient.ConnectionCallbacks callbacks,
+            Api... apis
+    ){
 
         GoogleApiClient.Builder builder = new GoogleApiClient.Builder(context)
                 .addConnectionCallbacks(callbacks)

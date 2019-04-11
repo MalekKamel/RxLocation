@@ -27,22 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private void getCurrentLocation() {
         tv_location = findViewById(R.id.tv_location);
         Disposable disposable = new RxLocation()
-                .onFailure(failMessage -> {
-                    // you can show error directly
-                    tv_location.setText(failMessage.getMessage());
-                    // or you can handle each error separately
-                    switch (failMessage.getError()){
-                        case GPS_DISABLED:
-                            // handle error
-                            break;
-                        case NETWORK_DISABLED:
-                            // handle error
-                            break;
-
-                        case UNKNOWN:
-                            // handle error
-                            break;
-                    }})
                 .listenForUpdates(
                         MainActivity.this,
                         new UpdateQuality()

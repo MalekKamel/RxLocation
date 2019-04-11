@@ -1,5 +1,5 @@
 package com.sha.kamel.rxlocation;
 
-public interface OnConnectedCallback {
+interface Procedure {
     void run();
 }
