@@ -14,7 +14,7 @@
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-location:1.9.0@aar'
+    implementation 'com.sha.kamel:rx-location:1.10.0@aar'
 }
 
 repositories {
@@ -28,7 +28,6 @@ url "https://dl.bintray.com/shabankamel/android"
 # Usage
 ```java
  new RxLocation()
-                .onFailure(failMessage -> tv_location.setText(failMessage.getMessage()))
                 .retrieveCurrentLocation(MainActivity.this)
                 .subscribe(location -> {
                             String msg = "lat = " +
@@ -60,34 +59,6 @@ Call `RxLocation.removeLocationUpdates()` to stop location updates when you don'
  - [ ] priority default value = 0.
  - [ ] interval default value =  LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY.
  - [ ] fastestUpdateInterval default value = 2 * 1000.
-
-# Errors
-if and error occureed it will be passed to `onFailureListener(OnFailure)`
-### Types of expected errors:
-
- - [ ] GPS_DISABLED
- - [ ] NETWORK_DISABLED
- - [ ] UNKNOWN
-
-#### Example
-```java
-new RxLocation().onFailureListener(failMessage -> {  
-      // you can show error directly
-      tv_location.setText(failMessage.getMessage()); 
-      // or you can handle each error separately
-      switch (failMessage.getError()){  
-        case GPS_DISABLED:  
-            // handle error  
-           break;  
-        case NETWORK_DISABLED:  
-            // handle error  
-           break;  
-        case UNKNOWN:  
-             // handle error  
-           break;  
-  } 
-})
-```
 
 ### See 'app' module for the full code.
 
