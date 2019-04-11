@@ -14,7 +14,7 @@
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-location:1.8.1@aar'
+    implementation 'com.sha.kamel:rx-location:1.9.0@aar'
 }
 
 repositories {
