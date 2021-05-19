@@ -10,21 +10,22 @@
  - [ ] Handle runtime.
  - [ ] Enable GPS.
 
-# Installation
-[ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
+#### Gradle:
 ```groovy
-dependencies {
-	        implementation 'com.github.ShabanKamell:RxLocation:1.0'
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
 }
 
-Add it in your root build.gradle at the end of repositories:
-allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+dependencies {
+        implementation 'com.github.ShabanKamell:RxLocation:x.y.z'
 }
 ```
+(Please replace x, y and z with the latest version numbers: [![](https://jitpack.io/v/ShabanKamell/RxLocation.svg)](https://jitpack.io/#ShabanKamell/RxLocation)
+)
+
 
 # Usage
 ```java
