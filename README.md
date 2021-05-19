@@ -14,14 +14,15 @@
 [ ![Download](https://api.bintray.com/packages/shabankamel/android/rxcurrentlocation/images/download.svg) ](https://bintray.com/shabankamel/android/rxcurrentlocation/_latestVersion)
 ```groovy
 dependencies {
-    implementation 'com.sha.kamel:rx-location:1.10.0@aar'
+	        implementation 'com.github.ShabanKamell:RxLocation:1.0'
 }
 
-repositories {
-maven {
-url "https://dl.bintray.com/shabankamel/android"
-}
-...
+Add it in your root build.gradle at the end of repositories:
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
 }
 ```
 
